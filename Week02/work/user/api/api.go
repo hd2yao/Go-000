@@ -1,9 +1,10 @@
 package api
 
 import (
+    "net/http"
+
     "github.com/gin-gonic/gin"
     "github.com/pkg/errors"
-    "net/http"
 
     "github.com/hd2yao/go-training/Week02/work/domain"
     "github.com/hd2yao/go-training/Week02/work/pkg/errcode"
