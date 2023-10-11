@@ -14,6 +14,6 @@ type IUserRepository interface {
     Login(userName, password string) (*User, error)
 }
 
-type IUserUsecase interface {
+type IUserUseCase interface {
     Login(userName, password string) (*User, error)
 }
