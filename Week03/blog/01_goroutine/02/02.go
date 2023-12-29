@@ -1,5 +1,40 @@
 package main
 
-func main() {
+import (
+	"log"
+	"net/http"
+)
 
+func setup() {
+	// 这里面有一些初始化的操作
+}
+
+func main() {
+	setup()
+
+	// 主服务
+	server()
+
+	// for debug
+	pprof()
+
+	select {}
+}
+
+func server() {
+	mux := http.NewServeMux()
+	mux.HandleFunc("/ping", func(writer http.ResponseWriter, request *http.Request) {
+		writer.Write([]byte("pong"))
+	})
+
+	// 主服务
+	if err := http.ListenAndServe(":8080", mux); err != nil {
+		log.Panicf("http server err: %+v", err)
+		return
+	}
+}
+
+func pprof() {
+	// 辅助服务，监听了其他端口，这里是 pprof 服务，用于 debug
+	http.ListenAndServe(":8081", nil)
 }
